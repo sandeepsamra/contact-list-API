@@ -1,10 +1,10 @@
-// This is an object literal which is going to hold all of my clown data,
+// This is an object literal which is going to hold all of my contact data,
 // event handlers and callback functions.
 var Contacts = {
 
-  names: ['Name1', 'Name2'],
+  names: [],
 
-  emails: ['orange', 'green'],
+  emails: [],
 
   getContacts: function() {
     //Performing a GET request and expecting JSON data
@@ -20,23 +20,32 @@ var Contacts = {
     $.each(data, function(index, contact) {
       var tr = $("<tr>").appendTo(table);
       $("<td>").text(contact.name).appendTo(tr);
-      $("<td>").text(contact.hair).appendTo(tr);
-      $("<td>").text(contact.gimmick).appendTo(tr);
+      $("<td>").text(contact.email).appendTo(tr);
     });
     //Shows the results once it has all been assembled
     $("#results").removeClass('hide');
   },
 
 
+  searchContacts: function() {
+    var findContact = {
+      name: $("input[name=name]").val(),
+      email: $("input[name=email]").val()
+    };
+
+    $.get('/contacts/info', findContact, Contacts.processContacts);
+  },
+
+
   addContact: function() {
-    //Callback function for the Add Clown button
+    //Callback function for the Add Contact button
     var newContact = {
-      name: Contacts.names.sample(),
-      email: Contacts.emails.sample()
+      name: $("input[name=name]").val(),
+      email: $("input[name=email]").val()
     };
 
     //Fourth parameter here is the expected data type from the server.
-    $.post('/contactss/create', newContact, Contacts.addedContact, 'json');
+    $.post('/contacts/create', newContact, Contacts.addedContact, 'json');
   },
 
 
@@ -54,5 +63,6 @@ var Contacts = {
 
 $(function() {
   $("#getContacts").on('click', Contacts.getContacts);
-  $("#makeContact").on('click', Contacts.addContact);
+  $("#makeContacts").on('click', Contacts.addContact);
+  $("#searchContacts").on('click', Contacts.searchContacts);
 });

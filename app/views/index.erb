@@ -1,8 +1,19 @@
 <section id="container">
   <h2>Contact List</h2>
 
-  <button id="getContacts">Get Contact</button><br>
-  <button id="makeContact">Add a Contact</button>
+  <div class="container-fluid">
+    <div class="row" id="new-contact">
+        <h3>Add a New Contact</h3>
+            Name: <input type="text" name="name">
+          <br>
+            Email: <input type="text" name="email">
+          <br>
+            <button id="makeContacts">Add a Contact</button>
+            <button id="searchContacts">Search Contact</button>
+            <button id="getContacts">Get Contacts</button>
+        </form>
+    </div>
+  </div>
 
   <section id="results" class="hide">
     <table id="contacts">

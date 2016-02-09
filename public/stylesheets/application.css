@@ -5,17 +5,24 @@
 
 #getContacts { 
   padding: 8px 16px; 
-  background-color: red; 
+  background-color: black; 
   color: white; 
   border: 1px solid whitesmoke; 
 }
 
-#makeContact {
+#makeContacts {
   padding: 8px 16px;
-  background-color: blue;
+  background-color: black;
   color: white;
   border: 1px solid whitesmoke;
   margin-top: 25px;
+}
+
+#searchContacts { 
+  padding: 8px 16px; 
+  background-color: black; 
+  color: white; 
+  border: 1px solid whitesmoke; 
 }
 
 #contacts { 

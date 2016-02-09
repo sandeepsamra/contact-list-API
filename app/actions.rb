@@ -19,3 +19,7 @@ post '/contacts/create' do
 
   response.to_json
 end
+
+get '/contacts/info' do
+  contact = Contact.find_by(name: params[:name], email: params[:email]).to_json
+end 
