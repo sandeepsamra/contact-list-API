@@ -33,7 +33,7 @@ var Contacts = {
       email: $("input[name=email]").val()
     };
 
-    $.get('/contacts/info', findContact, Contacts.processContacts);
+    $.getJSON('/contacts/:id', findContact, Contacts.processContacts);
   },
 
 
