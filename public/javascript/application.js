@@ -1,29 +1,18 @@
-// This is an object literal which is going to hold all of my contact data,
-// event handlers and callback functions.
 var Contacts = {
 
-  names: [],
-
-  emails: [],
-
   getContacts: function() {
-    //Performing a GET request and expecting JSON data
     $.getJSON('/contacts', Contacts.processContacts);
   },
 
 
   processContacts: function(data) {
-    //The data param in this function is the JSON data
-    //returned from the server
+    console.log(data);
     var table = $("#contacts").find('tbody').empty();
-    //Calling .empty() allows us to 'reset' the table each time
     $.each(data, function(index, contact) {
       var tr = $("<tr>").appendTo(table);
       $("<td>").text(contact.name).appendTo(tr);
       $("<td>").text(contact.email).appendTo(tr);
-      //add delete button
     });
-    //Shows the results once it has all been assembled
     $("#results").removeClass('hide');
   },
 
@@ -34,7 +23,7 @@ var Contacts = {
       email: $("input[name=email]").val()
     };
 
-    $.getJSON('/contacts/:id/delete', deleteContact);
+    $.post('/contacts/:id/delete', deleteContact, Contacts.getContacts);
   },
 
   searchContacts: function() {
@@ -48,19 +37,16 @@ var Contacts = {
 
 
   addContact: function() {
-    //Callback function for the Add Contact button
     var newContact = {
       name: $("input[name=name]").val(),
       email: $("input[name=email]").val()
     };
 
-    //Fourth parameter here is the expected data type from the server.
     $.post('/contacts/create', newContact, Contacts.addedContact, 'json');
   },
 
 
   addedContact: function(data) {
-    //The 'data' param is the JSON data from the server
     if (data.result) {
       Contacts.getContacts();
     }
@@ -68,6 +54,7 @@ var Contacts = {
       alert("You screwed something up.");
     }
   }
+
 };
 
 
