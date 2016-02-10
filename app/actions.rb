@@ -23,3 +23,8 @@ end
 get '/contacts/:id' do
   contact = Contact.where(name: params[:name], email: params[:email]).to_json
 end
+
+get '/contacts/:id/delete' do
+  contact = Contact.find_by(name: params[:name], email: params[:email])
+  contact.destroy
+end

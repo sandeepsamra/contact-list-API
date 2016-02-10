@@ -21,11 +21,21 @@ var Contacts = {
       var tr = $("<tr>").appendTo(table);
       $("<td>").text(contact.name).appendTo(tr);
       $("<td>").text(contact.email).appendTo(tr);
+      //add delete button
     });
     //Shows the results once it has all been assembled
     $("#results").removeClass('hide');
   },
 
+
+  deleteContacts: function() {
+    var deleteContact = {
+      name: $("input[name=name]").val(),
+      email: $("input[name=email]").val()
+    };
+
+    $.getJSON('/contacts/:id/delete', deleteContact);
+  },
 
   searchContacts: function() {
     var findContact = {
@@ -50,7 +60,7 @@ var Contacts = {
 
 
   addedContact: function(data) {
-    //Again, the 'data' param is the JSON data from the server
+    //The 'data' param is the JSON data from the server
     if (data.result) {
       Contacts.getContacts();
     }
@@ -65,4 +75,5 @@ $(function() {
   $("#getContacts").on('click', Contacts.getContacts);
   $("#makeContacts").on('click', Contacts.addContact);
   $("#searchContacts").on('click', Contacts.searchContacts);
+  $("#deleteContacts").on('click', Contacts.deleteContacts);
 });

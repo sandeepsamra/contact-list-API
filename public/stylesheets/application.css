@@ -3,6 +3,13 @@
   margin: 10px auto; 
 }
 
+#deleteContacts { 
+  padding: 8px 16px; 
+  background-color: black; 
+  color: white; 
+  border: 1px solid whitesmoke; 
+}
+
 #getContacts { 
   padding: 8px 16px; 
   background-color: black; 
@@ -47,3 +54,5 @@
 }
 
 .hide { display: none; }
+
+.hide-button { display: none; }
