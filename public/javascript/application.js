@@ -1,3 +1,4 @@
+//TEST
 var Contacts = {
 
   getContacts: function() {
